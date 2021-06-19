@@ -16,7 +16,8 @@ import javafx.scene.control.TextField;
 public class FXMLController {
 
 	private Dictionary model;
-	private String language = null;
+	private String language;
+	private List <RichWord> errori;
 
 	@FXML
 	private ResourceBundle resources;
@@ -52,6 +53,8 @@ public class FXMLController {
 		this.spellCheckText.clear();
 		this.txtError.clear();
 		this.txtTime.clear();
+		this.errori.clear();
+	
 		
 
 	}
@@ -64,7 +67,7 @@ public class FXMLController {
 		model.loadDictionary(this.language);
 
 		List <String> input = new ArrayList<>();
-		List <RichWord> errori = new ArrayList<>();
+		errori = new ArrayList<>();
 		
 		String parole = this.inputTextList.getText();
 		
@@ -103,7 +106,7 @@ public class FXMLController {
 
 	@FXML
 	void initialize() {
-		boxLingua.getItems().addAll("English", "Italian");
+		
 		assert boxLingua != null : "fx:id=\"boxLingua\" was not injected: check your FXML file 'Scene.fxml'.";
 		assert inputTextList != null : "fx:id=\"inputTextList\" was not injected: check your FXML file 'Scene.fxml'.";
 		assert btnSpell != null : "fx:id=\"btnSpell\" was not injected: check your FXML file 'Scene.fxml'.";
@@ -117,6 +120,7 @@ public class FXMLController {
 	public void setModel(Dictionary model) {
 
 		this.model = model;
+		boxLingua.getItems().addAll("English", "Italian");
 
 	}
 }
